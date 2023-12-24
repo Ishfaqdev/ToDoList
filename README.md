@@ -46,7 +46,7 @@ Feel free to explore and customize the project according to your preferences!
 ## Contributors
 
 - [Ishfaq Ahmad](https://github.com/your-Ishfaqdev)
-- [TechRock]
+- TechRock
 
 ## Acknowledgments
 
