@@ -1,0 +1,40 @@
+{% extends "todo/base.html" %}
+    {% block title %}<title>ToDo App - Update Task</title>{% endblock title %}
+    {% block style %}
+    <style>
+        body {
+            background-color: #f8f9fa; /* Set a light background color */
+        }
+
+        .update-task-title {
+            color: #007bff; /* Set the text color to a shade of blue */
+            text-align: center; /* Center the text */
+            margin-bottom: 30px; /* Add some space below the title */
+        }
+        .form-check-input {
+            position: absolute;
+            margin-top: 0.4rem;
+            margin-left: 0.3rem;
+          }
+    </style>
+    {% endblock style %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="update-task-title">Update Task</h2>
+                <form method="post" action="{% url 'update-task' task.id %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label style="font-weight: bold;">{{ field.label_tag }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mb-2">Update Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}    

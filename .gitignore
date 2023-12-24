@@ -1,0 +1,27 @@
+# Virtual Environment
+env/
+
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Ignore the local settings file
+*.env
+
+# Ignore the generated static files folder
+staticfiles/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore temporary files
+*.swp

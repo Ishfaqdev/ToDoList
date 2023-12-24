@@ -1,0 +1,77 @@
+{% extends "todo/base.html" %}
+{% block title %}<title>ToDo App - Dashboard</title>{% endblock title %}
+
+{% block style %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .dashboard-title {
+        color: #007bff; 
+        text-align: center; 
+        margin-bottom: 30px; 
+    }
+
+    .stats-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .stats-card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        margin: 10px;
+        flex: 1 0 300px; 
+    }
+
+    .dashboard-info {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        color: #495057;
+    }
+
+    .stats-card h4 {
+        color: #343a40;
+        margin-bottom: 10px;
+    }
+
+    .stats-card p {
+        color: #6c757d;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="dashboard-title">Dashboard</h2>
+
+    <!-- Statistics Section -->
+    <div class="stats-container">
+        <div class="stats-card">
+            <h4>Total Tasks</h4>
+            <p>{{ total_tasks }}</p>
+        </div>
+        <div class="stats-card">
+            <h4>Completed Tasks</h4>
+            <p>{{ completed_tasks }}</p>
+        </div>
+        <div class="stats-card">
+            <h4>Pending Tasks</h4>
+            <p>{{ pending_tasks }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-info">
+        <p>Welcome to your ToDo App Dashboard. Stay organized and get things done!</p>
+    </div>
+</div>
+{% endblock content %}

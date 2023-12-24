@@ -1,0 +1,43 @@
+{% extends "todo/base.html" %}
+    {% block title %}<title>ToDo App - About Us</title>{% endblock title %}
+    {% block style %}
+    <style>
+        body {
+            background-color: #f8f9fa; 
+        }
+
+        .aboutus-title {
+            color: #007bff; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+
+        .aboutus-content {
+            text-align: justify; 
+            font-size: 18px;
+        }
+    </style>
+    {% endblock style %}
+ 
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="aboutus-title">About Us</h2>
+
+        <div class="aboutus-content">
+            <p>
+                Welcome to ToDo App! We are a team of passionate individuals dedicated to helping you organize
+                your tasks and boost productivity. Our goal is to provide you with a simple and intuitive
+                platform to manage your daily activities efficiently.
+            </p>
+            <p>
+                Whether you are a student, professional, or anyone looking to stay organized, ToDo App is here
+                to assist you. Feel free to explore the features of our app, create and manage tasks, and
+                streamline your workflow.
+            </p>
+            <p>
+                Thank you for choosing ToDo App. We appreciate your trust in our platform, and we are committed
+                to continuously improving and enhancing your task management experience.
+            </p>
+        </div>
+    </div>
+{% endblock content %}

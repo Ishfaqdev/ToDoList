@@ -1,0 +1,69 @@
+{% extends "todo/base.html" %}
+    {% block title %}<title>Task Details</title>{% endblock title %}
+   {% block style %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .back-link {
+            margin-bottom: 20px;
+        }
+    </style>
+    {% endblock style %}
+
+{% block content %}
+    <div class="container">
+        <div class="back-link">
+            <a href="{% url 'all-task' %}" class="btn btn-secondary">Back to Tasks</a>
+        </div>
+        <h2>Task Details</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title}}</h5>
+                <p class="card-text"><strong>Description:</strong> {{task.description}}.</p>
+                <p class="card-text"><strong>Created Date:</strong> {{task.created}}</p>
+                <p class="card-text"><strong>Due Date:</strong> {{task.due_date}}</p>
+                <p class="card-text"><strong>Status:</strong> {% if task.is_completed %}Complete{% else %}Incomplete{% endif %}
+                </p>
+                <p class="card-text"><strong>Priority:</strong> {{task.priority}}</p>
+                <!-- Add more details as needed -->
+                <div class="d-flex">
+                <a href="{% url 'update-task' task.id %}" class="btn btn-warning mr-2">Edit</a>
+                <form action="{% url 'delete-task' task.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                        Delete
+                    </button>
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the task <strong>"{{ task.title }}"</strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit"  class="btn btn-danger">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

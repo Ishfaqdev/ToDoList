@@ -1,0 +1,81 @@
+{% extends 'todo/base.html' %} 
+{% load static %} 
+{% block title %}<title> Signin Page </title>{% endblock title %} 
+{% block style %}
+<link rel="stylesheet" href="{% static 'todo/css/signin.css' %}" />
+{% endblock style %} {% block content %}
+<div class="container my-4 w-50">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card mt-5">
+        {% comment %} <div class="card-header"> {% endcomment %}
+          <h1 class="card-title text-center mt-4">Login</h1>
+        {% comment %} </div> {% endcomment %}
+        <div class="card-body">
+
+          {% comment %} Display Error Messages {% endcomment %}
+          {% if form.errors %}
+              <div class="alert alert-danger" role="alert">
+                <strong>Error:</strong> Please correct the errors below.
+                <ul>
+                  {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                      <p class="alert alert-danger">{{error}}</p>
+                    {% endfor %}
+                  {% endif %}
+                </ul>
+              </div>
+            {% endif %}
+
+            {% comment %} Display Account Created Success Message {% endcomment %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible  fade show" role="alert">
+                  {{ message }}
+                  <button type="close" class="close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+              <script>
+                setTimeout(function() {
+                  $('.alert').alert('close');
+                }, 3000);
+              </script>
+            {% endif %}
+          <form   action="" method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form-group">
+                {{field.label_tag}}
+                {{field}}
+                {% for error in field.errors %}
+                  <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endfor %}
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMeCheckbox">
+              <label class="form-check-label" for="rememberMeCheckbox">
+                Remember Me
+              </label>
+            </div>
+          
+            <div class="form-group">
+              <button type="submit" class="btn my-btn btn-success btn-block">
+                Login
+              </button>
+            </div>
+            <div class="form-group text-center">
+              <span style="font-weight: bold;">Don't have an account?</span>
+              <div class="create-account">
+                <a href="{% url 'signup' %}">Create Account</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

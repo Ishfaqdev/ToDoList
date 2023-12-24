@@ -1,0 +1,95 @@
+body {
+  background-color: #f7f7f7;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  height: 50px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.btn {
+  /*border-radius: 30px;*/
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 30px;
+}
+.form-check-input {
+  margin-top: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+/* .btn-primary {
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.btn-primary:hover {
+  background-color: #594dd2;
+  border-color: #594dd2;
+}
+
+.btn-outline-primary {
+  color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+} */
+
+.forgot-password {
+  color: #6c63ff;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.create-account {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.create-account a {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.create-account a:hover {
+  text-decoration: underline;
+  font-size: 18px;
+}

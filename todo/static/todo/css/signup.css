@@ -1,0 +1,86 @@
+body {
+  background-color: #f7f7f7;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  /*border-radius: 30px;*/
+  height: 50px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.btn {
+  /*border-radius: 30px;*/
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 30px;
+}
+
+/* .btn-primary {
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.btn-primary:hover {
+  background-color: #594dd2;
+  border-color: #594dd2;
+}
+
+.btn-outline-primary {
+  color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+} */
+
+.already-have-account {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.already-have-account a {
+  /* color: #6c63ff; */
+  text-decoration: none;
+}
+
+.already-have-account a:hover {
+  text-decoration: underline;
+  font-size: 18px;
+}
+.form-check-label {
+  font-size: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
