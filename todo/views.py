@@ -32,8 +32,6 @@ def add_task(request):
                 task = form.save(commit=False)
                 task.user = request.user
                 task.created = timezone.now()
-
-                # Set 'due_date' to 7 days from 'created' if not provided
                 if not task.due_date:
                     task.due_date = task.created + timezone.timedelta(days=7)
                 task.save()
@@ -108,13 +106,14 @@ def user_login(request):
                 user = authenticate(username=user_name, password=user_password)
                 if user is not None:
                     login(request, user)
-                    return HttpResponseRedirect('all-task')
+                    request.session['username'] = user_name
+                    return redirect('all-task')
         else:
             form = LoginForm()
 
         return render(request, 'todo/login.html', {'form': form})
     else:
-        return HttpResponseRedirect('all-task')
+        return redirect('all-task')
 
 
 # User Signup Form
@@ -123,12 +122,16 @@ def sign_up(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             messages.success(
-                request, 'Your account has been registered!!  Now you can login')
+                request, 'Your account has been registered!! Now you can login')
             form.save()
-            form = SignUpForm()
-            return HttpResponseRedirect('/login')
+            user = authenticate(
+                username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, user)
+            request.session['username'] = form.cleaned_data['username']
+            return redirect('all-task')
     else:
         form = SignUpForm()
+
     return render(request, 'todo/signup.html', {'form': form})
 
 

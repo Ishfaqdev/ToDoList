@@ -9,12 +9,20 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% block style %}
     <style>
-        /* Center the buttons */
+       
         .center-btns {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 80vh;
+        }
+        .no-tasks-found {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+        }
+        .no-tasks-found a {
+            color: #007bff; 
         }
     </style>
     {% endblock style %}
@@ -45,7 +53,7 @@
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="modal" data-target="#logoutModal">Log Out</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#logoutModal" style="cursor: pointer;">Log Out</a>
                 </li>
             </ul>
             {% endif %}
@@ -92,6 +100,10 @@
         <a href="{% url 'login' %}" type="button" class="btn btn-success btn-sm">
             Login
         </a>
+        {% else %}
+        <div class="no-tasks-found">
+            <p>Start by <a href="{% url 'add-task' %}">adding a task</a>.</p>
+        </div>
         {% endif %}
     </div>
   </div>
