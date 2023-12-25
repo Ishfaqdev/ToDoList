@@ -3,6 +3,7 @@ from django.core import validators
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.utils.translation import gettext, gettext_lazy as _
+from django.core.exceptions import ValidationError
 from .models import Task
 
 
@@ -43,6 +44,23 @@ class SignUpForm(UserCreationForm):
             'placeholder': 'Confirm Password'
         }),
     )
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+
+        # Check if the username contains only numbers
+        if username.isdigit():
+            raise ValidationError('Username cannot contain only numbers.')
+
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+
+        if not email:
+            raise ValidationError('Please enter your email.')
+
+        return email
 
     class Meta:
         model = User
