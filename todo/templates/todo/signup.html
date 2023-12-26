@@ -8,11 +8,11 @@
 {% endblock style %}
 
 {% block content %}
-  <div class="container my-4 w-50">
+  <div class="container my-4">
     <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
+      <div class="col-lg-8 col-md-10 col-sm-12">
         <div class="card mt-5">
-            <h1 class="card-title text-center mt-4">Create Account</h1>
+          <h1 class="card-title text-center mt-4">Create Account</h1>
           <div class="card-body">
             {% if form.errors %}
             <div class="alert alert-danger" role="alert">
@@ -25,7 +25,7 @@
                 {% endif %}
               </ul>
             </div>
-          {% endif %}
+            {% endif %}
             <form action="" method="post" novalidate>
               {% csrf_token %}
               {% for field in form %}
@@ -37,16 +37,16 @@
                   {% endfor %}
                 </div>
               {% endfor %}
-              
+
               <div class="form-group">
                 <button type="submit" class="btn my-btn btn-primary btn-block">Signup</button>
               </div>
               <div class="already-have-account">
                 <center><span style="font-weight: bold;">Already have an account?</span>
-                <div class="login-link">
-                  <a href="{% url 'login' %}">Login</a>
-                </div>
-              </center>
+                  <div class="login-link">
+                    <a href="{% url 'login' %}">Login</a>
+                  </div>
+                </center>
               </div>
             </form>
           </div>
