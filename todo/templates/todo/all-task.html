@@ -91,6 +91,9 @@
                     <option value="All">All</option>
                     <option value="priority">Priority</option>
                     <option value="due_date">Due Date</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+
                 </select>
             </div>
 
@@ -158,7 +161,9 @@
                         if (
                             selectedValue === 'All' ||
                             (selectedValue === 'priority' && priorityCell.textContent.trim() === 'High') ||
-                            (selectedValue === 'due_date' && isTaskDue(taskDueDate) && statusCell.classList.contains('status-incomplete'))
+                            (selectedValue === 'due_date' && isTaskDue(taskDueDate) && statusCell.classList.contains('status-incomplete')) ||
+                            (selectedValue === 'complete' && statusCell.classList.contains('status-complete')) ||
+                            (selectedValue === 'incomplete' && statusCell.classList.contains('status-incomplete'))
                         ) {
                             row.style.display = '';
                         } else {
@@ -183,5 +188,6 @@
                 }
             });
         </script>
+        
         
 {% endblock content %}
