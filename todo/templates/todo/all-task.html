@@ -89,7 +89,9 @@
                 <label for="filter" class="filter-label">Filter:</label>
                 <select id="filter" class="form-control filter-select">
                     <option value="All">All</option>
-                    <option value="priority">Priority</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
                     <option value="due_date">Due Date</option>
                     <option value="complete">Complete</option>
                     <option value="incomplete">Incomplete</option>
@@ -163,7 +165,10 @@
                             (selectedValue === 'priority' && priorityCell.textContent.trim() === 'High') ||
                             (selectedValue === 'due_date' && isTaskDue(taskDueDate) && statusCell.classList.contains('status-incomplete')) ||
                             (selectedValue === 'complete' && statusCell.classList.contains('status-complete')) ||
-                            (selectedValue === 'incomplete' && statusCell.classList.contains('status-incomplete'))
+                            (selectedValue === 'incomplete' && statusCell.classList.contains('status-incomplete')) ||
+                            (selectedValue === 'high' && priorityCell.textContent.trim() === 'High') ||
+                            (selectedValue === 'medium' && priorityCell.textContent.trim() === 'Medium') ||
+                            (selectedValue === 'low' && priorityCell.textContent.trim() === 'Low')
                         ) {
                             row.style.display = '';
                         } else {
@@ -188,6 +193,5 @@
                 }
             });
         </script>
-        
         
 {% endblock content %}
