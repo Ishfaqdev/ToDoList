@@ -80,7 +80,7 @@ def update_task(request, id):
         if form.is_valid():
             form.save()
             messages.success(
-                request, f'Your Task { task.title } has been updated Succesfully!')
+                request, f'Your Task <strong>{task.title}</strong> has been updated Succesfully!')
             return redirect('all-task')
     else:
         update = Task.objects.get(pk=id)

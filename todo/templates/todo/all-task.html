@@ -67,7 +67,7 @@
               {% if messages %}
                       {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}  fade show" role="alert">
-                          {{ message }}
+                          {{ message|safe }}
                           <button type="button" class="close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -99,14 +99,14 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Created Date</th>
-                            <th scope="col">Due Date</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Priority</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col" style="width:auto;">ID</th>
+                            <th scope="col" style="width:auto;">Title</th>
+                            <th scope="col" style="width:auto;">Description</th>
+                            <th scope="col" style="width:auto;">Created Date</th>
+                            <th scope="col" style="width:auto;">Due Date</th>
+                            <th scope="col" style="width:auto;">Status</th>
+                            <th scope="col" style="width:auto;">Priority</th>
+                            <th scope="col" style="width:auto;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,9 +114,9 @@
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
                                 <td>{{ task.title }}</td>
-                                <td>{{ task.description|truncatechars:25 }}</td>
-                                <td>{{ task.created }}</td>
-                                <td>{{ task.due_date }}</td>
+                                <td>{{ task.description|truncatechars:40 }}</td>
+                                <td>{{ task.created|date:"Y-m-d" }}</td>
+                                <td>{{ task.due_date|date:"Y-m-d" }}</td>
                                 <td class="{% if task.is_completed %} status-complete{% else %} status-incomplete {% endif %}">
                                     {% if task.is_completed %}Complete{% else %}Incomplete{% endif %}
                                 </td>
@@ -144,35 +144,39 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const filterSelect = document.getElementById('filter');
                 const tableRows = document.querySelectorAll('.table-container tbody tr');
-    
+            
                 filterSelect.addEventListener('change', function () {
                     const selectedValue = filterSelect.value;
-    
+            
                     tableRows.forEach(function (row) {
                         const dueDateCell = row.querySelector('td:nth-child(5)');
                         const statusCell = row.querySelector('.status-complete, .status-incomplete');
                         const priorityCell = row.querySelector('td:nth-child(7)'); // Adjust the index to match the priority column
-    
-                        if (selectedValue === 'All' ||
-                            (selectedValue === 'priority' && priorityCell.textContent === 'High') ||
-                            (selectedValue === 'due_date' && isDueDateNear(dueDateCell.textContent) && statusCell.classList.contains('status-incomplete'))) {
+            
+                        const today = new Date();
+                        const taskCreatedDate = new Date(row.querySelector('td:nth-child(4)').textContent.trim()); // Adjust the index to match the created date column
+            
+                        if (
+                            selectedValue === 'All' ||
+                            (selectedValue === 'priority' && priorityCell.textContent.trim() === 'High') ||
+                            (selectedValue === 'due_date' && isTaskDue(taskCreatedDate, dueDateCell.textContent.trim()) && statusCell.classList.contains('status-incomplete'))
+                        ) {
                             row.style.display = '';
                         } else {
                             row.style.display = 'none';
                         }
                     });
                 });
-    
-                function isDueDateNear(dueDate) {
+            
+                function isTaskDue(createdDate, dueDate) {
                     const today = new Date();
                     const taskDueDate = new Date(dueDate);
-                    const timeDifference = taskDueDate - today;
-    
-                    // Define the threshold for "near" due date (in milliseconds)
-                    const threshold = 7 * 24 * 60 * 60 * 1000; // 7 days
-    
-                    return timeDifference > 0 && timeDifference <= threshold;
+            
+                    // Compare both created date and due date with today's date
+                    return createdDate <= today && taskDueDate >= today;
                 }
             });
+            
+            
         </script>
 {% endblock content %}
